@@ -21,16 +21,30 @@
       <artifactId>spring-boot-starter-web</artifactId>
       <version>${spring.version}</version>
     </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-data-jpa</artifactId>
-      <version>${spring.version}</version>
-    </dependency>
+
+
     <dependency>
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
       <version>42.5.1</version>
       <scope>runtime</scope>
+    </dependency>
+
+
+
+    <!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-core -->
+    <dependency>
+      <groupId>org.flywaydb</groupId>
+      <artifactId>flyway-core</artifactId>
+      <version>9.16.0</version>
+    </dependency>
+
+
+    <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+      <version>3.0.0</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -38,6 +52,7 @@
       <version>3.0.0</version>
       <scope>test</scope>
     </dependency>
+
 
   </dependencies>
 </project>

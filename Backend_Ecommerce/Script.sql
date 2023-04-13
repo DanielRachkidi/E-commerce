@@ -1,4 +1,4 @@
-create table if not exists Comapny(
+create table  Comapny(
                         ID_company  serial primary key ,
                         Name varchar (20) unique not null,
                         Address varchar (50)

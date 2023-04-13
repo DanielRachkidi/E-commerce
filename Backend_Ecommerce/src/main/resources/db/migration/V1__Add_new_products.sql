@@ -1,3 +1,4 @@
+
 create table Comapny(
                         ID_company  serial primary key ,
                         Name varchar (20) unique not null,
@@ -15,12 +16,13 @@ create table Stock(
 
 create table Product(
                         ID_product serial primary key ,
-                        Name varchar(20) unique not null,
+                        Name varchar(20)  not null,
                         Description varchar (100),
                         price decimal(5,2) not null,
                         ID_stock int not null ,
                         FOREIGN KEY (ID_stock) REFERENCES Stock(ID_stock)
 
 );
+
 
 

@@ -19828,28 +19828,13 @@
 											"top": 554,
 											"width": 168.08447265625,
 											"height": 13
-										},
-										{
-											"_type": "ERDColumnView",
-											"_id": "AAAAAAGHYD611FHMsJE=",
-											"_parent": {
-												"$ref": "AAAAAAGHYCbmcU+mmSw="
-											},
-											"model": {
-												"$ref": "AAAAAAGHYD61ylHJQ0Y="
-											},
-											"font": "Arial;13;0",
-											"left": 381,
-											"top": 569,
-											"width": 168.08447265625,
-											"height": 13
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 376,
 									"top": 519,
 									"width": 178.08447265625,
-									"height": 68
+									"height": 53
 								}
 							],
 							"font": "Arial;13;0",
@@ -21983,17 +21968,6 @@
 							"name": "total",
 							"type": "INTEGER",
 							"length": 0
-						},
-						{
-							"_type": "ERDColumn",
-							"_id": "AAAAAAGHYD61ylHJQ0Y=",
-							"_parent": {
-								"$ref": "AAAAAAGHYCbmcU+i7Fo="
-							},
-							"name": "payment_id",
-							"type": "INTEGER",
-							"length": 0,
-							"foreignKey": true
 						}
 					]
 				},
