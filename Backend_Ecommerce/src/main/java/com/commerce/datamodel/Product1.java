@@ -9,41 +9,50 @@ public class Product1
   private double price;
   private Stock stock;
   
-  public Product1(String name, double price, Stock stock) {
+  public Product1(String name, double price, Stock stock)
+  {
     this.name = name;
     this.price = price;
     this.stock = stock;
   }
   
-  public int getId() {
+  public int getId()
+  {
     return id;
   }
   
-  public void setId(int id) {
+  public void setId(int id)
+  {
     this.id = id;
   }
   
-  public String getName() {
+  public String getName()
+  {
     return name;
   }
   
-  public void setName(String name) {
+  public void setName(String name)
+  {
     this.name = name;
   }
   
-  public double getPrice() {
+  public double getPrice()
+  {
     return price;
   }
   
-  public void setPrice(double price) {
+  public void setPrice(double price)
+  {
     this.price = price;
   }
   
-  public Stock getStock() {
+  public Stock getStock()
+  {
     return stock;
   }
   
-  public void setStock(Stock stock) {
+  public void setStock(Stock stock)
+  {
     this.stock = stock;
   }
   

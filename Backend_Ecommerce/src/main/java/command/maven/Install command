@@ -1,0 +1,41 @@
+C:\Users\Daniel\.jdks\openjdk-18\bin\java.exe "-Dmaven.multiModuleProjectDirectory=C:\Users\Daniel\Desktop\E-Commerce Fashion\Backend_Ecommerce" -Dmaven.home=C:\Users\Daniel\Desktop\jeetbrain\intellij\plugins\maven\lib\maven3 -Dclassworlds.conf=C:\Users\Daniel\Desktop\jeetbrain\intellij\plugins\maven\lib\maven3\bin\m2.conf -Dmaven.ext.class.path=C:\Users\Daniel\Desktop\jeetbrain\intellij\plugins\maven\lib\maven-event-listener.jar -javaagent:C:\Users\Daniel\Desktop\jeetbrain\intellij\lib\idea_rt.jar=50556:C:\Users\Daniel\Desktop\jeetbrain\intellij\bin -Dfile.encoding=UTF-8 -classpath C:\Users\Daniel\Desktop\jeetbrain\intellij\plugins\maven\lib\maven3\boot\plexus-classworlds-2.6.0.jar;C:\Users\Daniel\Desktop\jeetbrain\intellij\plugins\maven\lib\maven3\boot\plexus-classworlds.license org.codehaus.classworlds.Launcher -Didea.version=2022.1 install
+[INFO] Scanning for projects...
+[INFO]
+[INFO] -------------------< org.example:Backend_Ecommerce >--------------------
+[INFO] Building Backend_Ecommerce 1.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ Backend_Ecommerce ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 2 resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ Backend_Ecommerce ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+[INFO] Compiling 9 source files to C:\Users\Daniel\Desktop\E-Commerce Fashion\Backend_Ecommerce\target\classes
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ Backend_Ecommerce ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory C:\Users\Daniel\Desktop\E-Commerce Fashion\Backend_Ecommerce\src\test\resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ Backend_Ecommerce ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+[INFO] Compiling 2 source files to C:\Users\Daniel\Desktop\E-Commerce Fashion\Backend_Ecommerce\target\test-classes
+[INFO]
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ Backend_Ecommerce ---
+[INFO]
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ Backend_Ecommerce ---
+[INFO] Building jar: C:\Users\Daniel\Desktop\E-Commerce Fashion\Backend_Ecommerce\target\Backend_Ecommerce-1.0-SNAPSHOT.jar
+[INFO]
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ Backend_Ecommerce ---
+[INFO] Installing C:\Users\Daniel\Desktop\E-Commerce Fashion\Backend_Ecommerce\target\Backend_Ecommerce-1.0-SNAPSHOT.jar to C:\Users\Daniel\.m2\repository\org\example\Backend_Ecommerce\1.0-SNAPSHOT\Backend_Ecommerce-1.0-SNAPSHOT.jar
+[INFO] Installing C:\Users\Daniel\Desktop\E-Commerce Fashion\Backend_Ecommerce\pom.xml to C:\Users\Daniel\.m2\repository\org\example\Backend_Ecommerce\1.0-SNAPSHOT\Backend_Ecommerce-1.0-SNAPSHOT.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  14.401 s
+[INFO] Finished at: 2023-04-15T18:05:20+03:00
+[INFO] ------------------------------------------------------------------------
+
+Process finished with exit code 0
