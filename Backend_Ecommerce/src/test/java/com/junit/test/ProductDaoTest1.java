@@ -12,8 +12,7 @@ import com.commerce.datamodel.Stock;
 import com.commerce.service.Configuration;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import jakarta.inject.Inject;
-import jakarta.inject.Named;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -35,8 +34,8 @@ public class ProductDaoTest1
     
   }
   
-  @Inject
-  @Named("db.mainDatasource")
+//  @Inject
+//  @Named("db.mainDatasource")
   DataSource dataSource;
   
   
