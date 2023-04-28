@@ -58,12 +58,6 @@ c
 3src/main/java/com/commerce/user/UserRepository.java,b\8\b8c7af7603f4853a7d264cd100cbdebe3869e687
 i
 9src/main/java/com/commerce/datamodel/ShoppingSession.java,4\6\466aa1c9e7eb0e4df33fe057f08c28ff899b9bec
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
-`
-0src/main/java/com/commerce/security/AuthApi.java,c\9\c97b5c883a79168ca0759773feddcc9e5b2f9894
-u
-Esrc/main/java/com/commerce/security/CustomAuthenticationProvider.java,c\e\cea96f93afb4f76dc612225fc82853b09dfe3721
 j
 :src/main/java/com/commerce/security/WebSecurityConfig.java,2\5\2523ac6ef8dee2809f895e08f029ae9c9b06a86e
 `

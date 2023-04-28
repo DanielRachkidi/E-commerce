@@ -123,7 +123,7 @@ public class AuthApi
       // Set token in response header
       HttpHeaders headers = new HttpHeaders();
       headers.set(HttpHeaders.AUTHORIZATION, token);
-      System.out.println("hello user " + user.getUsername());
+//      System.out.println("hello user " + user.getUsername());
 
       return ResponseEntity.ok()
         .headers(headers)
