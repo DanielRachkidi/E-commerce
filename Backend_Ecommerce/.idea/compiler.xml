@@ -10,5 +10,6 @@
         <module name="Backend_Ecommerce" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel target="18" />
   </component>
 </project>

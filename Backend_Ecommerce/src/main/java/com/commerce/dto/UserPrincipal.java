@@ -21,6 +21,7 @@ public class UserPrincipal
   
   }
   
+  
   public String subject()
   {
     return String.format("%s,%s,%s", id, username, loginTime);

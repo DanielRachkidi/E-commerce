@@ -1,0 +1,12 @@
+{
+  "navbar": {
+    "addProducts": "Add Products",
+    "productList": "Product List",
+    "logout": "Logout"
+  },
+  "home": {
+    "welcome": "Welcome to our website!",
+    "text": "The customer is very important, the customer will be followed by the customer. But as great as\n    before the author flatters.",
+    "getStarted": "Get Started"
+  }
+}

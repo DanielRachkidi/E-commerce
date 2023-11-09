@@ -1,2 +1,6 @@
 
-s	java:S116!"WRename this field "payment_type" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(â‡öÖ8ª‘ôôø0
+l	java:S116""WRename this field "payment_type" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(â‡öÖ
+i
+java:S1128"SRemove this unused import 'com.amazonaws.thirdparty.jackson.annotation.JsonIgnore'.(ôØâ›
+M
+java:S1128"7Remove this unused import 'javax.persistence.OneToOne'.(Ø½ïâ

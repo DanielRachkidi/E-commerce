@@ -1,8 +1,11 @@
 
-]	java:S125/"<This block of commented-out lines of code should be removed.(¢ŒÎÏÿÿÿÿÿ8¯¦¬æû0
-c
-java:S1481@"ARemove this unused "httpSecurityLogoutConfigurer" local variable.(’ÙÛ°ıÿÿÿÿ8¨üÁÎú0
-O
-java:S1611E"2Remove the parentheses around the "auth" parameter(ò‚öí8àÍ¯Ëú0
-T
-java:S1611O"8Remove the parentheses around the "exceptions" parameter(Œ´şq8Ô¶‰Ìú0
+\
+java:S1481D"ARemove this unused "httpSecurityLogoutConfigurer" local variable.(’ÙÛ°ıÿÿÿÿ
+H
+java:S1611J"2Remove the parentheses around the "auth" parameter(ò‚öí
+M
+java:S1611_"8Remove the parentheses around the "exceptions" parameter(Œ´şq
+u
+java:S1128"SRemove this unused import 'org.springframework.beans.factory.annotation.Autowired'.(¡¸Îùÿÿÿÿ8…ĞÖ‘1
+
+java:S1128 "qRemove this unused import 'org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter'.(÷ìïŠ8…ĞÖ‘1

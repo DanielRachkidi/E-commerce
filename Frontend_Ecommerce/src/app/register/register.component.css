@@ -1,0 +1,111 @@
+body {
+  margin: 0;
+  padding: 100px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #2C65B6 36%, #7e51d9 50%, #C346 72%);
+
+}
+
+body::before,
+body::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+body::before {
+  top: 20%;
+}
+
+body::after {
+  bottom: 20%;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75vh;
+  margin-top: 1%;
+
+}
+
+.card {
+  width: 500px;
+  height: 95%;
+  margin-top: 5%;
+  /*background: linear-gradient(330deg, #0068AF 19%, #CD2395 79%, lightblue 79%, #C348D5 64%)*/
+}
+
+h1 {
+  text-align: center;
+}
+.register-form {
+  display: flow-root;
+  width: 400px;
+  padding: 5px;
+  border-radius: 5px;
+  /*box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.1);*/
+  margin: auto;
+  margin-top: 10px;
+
+}
+
+
+
+register-form input {
+  display: inline-block;
+  width: 45%;
+  margin-right: 4%;
+}
+
+.register-form label {
+  display: inline-block;
+  width: 45%;
+  margin-bottom: 4px;
+}
+
+
+
+.button {
+  width: 59%;
+  color: #fff;
+  border: none;
+  border-radius: 60px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 19%;
+  background: linear-gradient(135deg, #2C65B6 36%, #7e51d9 50%, #C346 72%);
+
+}
+
+.register-form button:hover {
+  background-color: #0062cc;
+}
+
+
+.password-wrapper {
+  position: relative;
+}
+
+.text-muted {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 6px;
+  font-size: 12px;
+  color: #999;
+  visibility: hidden;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.visible {
+  visibility: visible;
+  opacity: 1;
+}

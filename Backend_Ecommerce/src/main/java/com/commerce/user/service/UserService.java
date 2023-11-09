@@ -1,4 +1,4 @@
-package com.commerce.user;
+package com.commerce.user.service;
 
 import com.amazonaws.services.connect.model.UserNotFoundException;
 import com.commerce.datamodel.User;
@@ -79,9 +79,11 @@ public class UserService
   }
   
   //using it for the userRole controller
-  public User getUserById(int userId) {
+  public User getUserById(int userId)
+  {
     return repository.findById(userId).orElse(null);
   }
+  
   // the exception method for the payment attributes
   public boolean validatePayment(UserPayment userPayment)
   {
@@ -97,8 +99,8 @@ public class UserService
     {
       return false;
     }
-
-    if (userPayment.getExpiry() == null )
+    
+    if (userPayment.getExpiry() == null)
     {
       return false;
     }
@@ -109,47 +111,48 @@ public class UserService
   // create user payment method for the user when he register
   public UserPayment CreateUserPaymentInfo(User user, UserPayment userPayment)
   {
-  
-    if (userPaymentRepository.findByUser(user)) {
+    
+    if (userPaymentRepository.findByUser(user))
+    {
       throw new IllegalArgumentException("User payment information already exists for this user");
     }
-  
+    
     // Set the user for the userPayment object
     userPayment.setUser(user);
-  
+    
     // Set other properties of the userPayment object
     userPayment.setPayment_type(userPayment.getPayment_type());
     userPayment.setProvider(userPayment.getProvider());
     userPayment.setAccountno(userPayment.getAccountno());
     userPayment.setExpiry(userPayment.getExpiry());
-  
-
     
     // Perform validation if needed
-    if (!validatePayment(userPayment)) {
+    if (!validatePayment(userPayment))
+    {
       throw new RuntimeException("Invalid payment information");
     }
-  
+    
     return userPaymentRepository.save(userPayment);
   }
   
   // create user information  for the  user when he registered
-  public UserInfo createUserInfo(User user, UserInfo userInfo) {
+  public UserInfo createUserInfo(User user, UserInfo userInfo)
+  {
     
-    if (userInfoRepository.existsByUser(user)) {
+    if (userInfoRepository.existsByUser(user))
+    {
       throw new IllegalArgumentException("User information already exists for this user");
     }
     
     userInfo.setUser(user);
-  
+    
     if (userInfo.getAddress() == null || userInfo.getAddress().isEmpty() ||
         userInfo.getCity() == null || userInfo.getCity().isEmpty() ||
         userInfo.getCode_postal() <= 0 ||
-        userInfo.getCountry() == null || userInfo.getCountry().isEmpty() )
+        userInfo.getCountry() == null || userInfo.getCountry().isEmpty())
     {
       throw new IllegalArgumentException(" Information cannot be null");
     }
-    
     
     return userInfoRepository.save(userInfo);
   }
@@ -161,7 +164,6 @@ public class UserService
     logger.info("Provided User ID: {}", user.getId());
     logger.info("UserPayment User ID: {}", userPayment.getUser().getId());
     
-    
     if (userPayment.getUser().getId() != user.getId())
     {
       throw new IllegalArgumentException("Invalid user for the provided UserPayment");
@@ -170,14 +172,14 @@ public class UserService
     userPayment.setProvider(userPaymentDetails.getProvider());
     userPayment.setAccountno(userPaymentDetails.getAccountno());
     userPayment.setExpiry(userPaymentDetails.getExpiry());
-  
-    if (!validatePayment(userPayment)) {
+    
+    if (!validatePayment(userPayment))
+    {
       throw new RuntimeException("Invalid payment update information");
     }
     
     return userPaymentRepository.save(userPayment);
   }
-  
   
   // update method the attribute for the model  class information
   public UserInfo updateUserInfo(User user, UserInfo userInfo, UserInfo userInfoDetails)
@@ -191,12 +193,11 @@ public class UserService
     userInfo.setCity(userInfoDetails.getCity());
     userInfo.setCode_postal(userInfoDetails.getCode_postal());
     userInfo.setCountry(userInfoDetails.getCountry());
-  
-  
+    
     if (userInfo.getAddress() == null || userInfo.getAddress().isEmpty() ||
         userInfo.getCity() == null || userInfo.getCity().isEmpty() ||
         userInfo.getCode_postal() == 0 ||
-        userInfo.getCountry() == null || userInfo.getCountry().isEmpty() )
+        userInfo.getCountry() == null || userInfo.getCountry().isEmpty())
     {
       throw new IllegalArgumentException(" Information cannot be updated");
     }
@@ -204,24 +205,25 @@ public class UserService
     return userInfoRepository.save(userInfo);
   }
   
-  public User updateUser(int userId, User user) throws UserNotFoundException {
+  public User updateUser(int userId, User user)
+  throws UserNotFoundException
+  {
     // Perform necessary validations or business logic before updating the user
-  
+    
     // Check if the user exists
     User existingUser = repository.findById(userId)
       .orElseThrow(() -> new UserNotFoundException("User not found with ID: " + userId));
-  
-  
-  
+    
     // Update the user entity
     existingUser.setUsername(user.getUsername());
     existingUser.setPassword(user.getPassword());
     existingUser.setFirst_name(user.getFirst_name());
     existingUser.setLast_name(user.getLast_name());
     existingUser.setTelephone(user.getTelephone());
-  
+    
     // Validate the user data
-    if (user.getUsername() == null || user.getUsername().isEmpty()) {
+    if (user.getUsername() == null || user.getUsername().isEmpty())
+    {
       throw new IllegalArgumentException("Username cannot be empty");
     }
     // Save the updated user in the database
@@ -230,10 +232,4 @@ public class UserService
     // Perform any additional processing or return the updated user entity
     return updatedUser;
   }
-  
-  
-  
-  
-  
-  
 }

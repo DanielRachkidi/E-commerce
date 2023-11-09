@@ -1,0 +1,5 @@
+
+R
+java:S1710/"<Remove the 'Pattern.List' wrapper from this annotation group(ìÓ¸î
+j	java:S1167"URename this field "first_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(è•Ûì
+i	java:S116:"TRename this field "last_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(šø´¯

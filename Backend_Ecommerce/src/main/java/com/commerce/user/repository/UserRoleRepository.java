@@ -1,4 +1,4 @@
-package com.commerce.user;
+package com.commerce.user.repository;
 
 import com.commerce.datamodel.UserRole;
 import com.commerce.id.UserRoleId;

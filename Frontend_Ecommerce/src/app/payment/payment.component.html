@@ -1,0 +1,29 @@
+<body>
+<div class="container">
+  <div class="card">
+<h2>Payment Information</h2>
+<form (ngSubmit)="createPaymentInfo()" style="
+  margin-left: 114px;
+    width: 134%;">
+  <div class="form-group">
+    <label for="paymentType">Payment Type:</label>
+    <input type="text" class="form-control" id="paymentType" [(ngModel)]="paymentInfo.payment_type" name="paymentType" required>
+  </div>
+  <div class="form-group">
+    <label for="provider">Provider:</label>
+    <input type="text" class="form-control" id="provider" [(ngModel)]="paymentInfo.provider" name="provider" required>
+  </div>
+  <div class="form-group">
+    <label for="accountNo">Account Number:</label>
+    <input type="number" class="form-control" id="accountNo" [(ngModel)]="paymentInfo.accountno" name="accountNo" required>
+  </div>
+  <div class="form-group">
+    <label for="expiry">Expiration Date:</label>
+    <input type="date" class="form-control" id="expiry" [(ngModel)]="paymentInfo.expiry" name="expiry" required>
+  </div>
+  <br>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+  </div>
+</div>
+</body>

@@ -1,0 +1,27 @@
+.navbar {
+  background-color: lightgreen;
+  justify-content: space-between;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+
+.footer ul {
+  list-style: none;
+
+}
+
+footer li {
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: 200;
+
+}
+
+.footer a {
+  text-decoration: none;
+  color: black;
+
+}

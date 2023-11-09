@@ -1,1 +1,228 @@
-<p>WELCOME!</p>
+<body>
+
+
+<div>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row class="navbar">
+      <button *ngIf="hasAdminRole" mat-button [routerLink]="['/addproduct', userId]">Add Product</button>
+
+      <button mat-button (click)="toggleProductOptions = !toggleProductOptions" translate>
+        {{ 'navbar.productList' | translate }}</button>
+
+
+      <button mat-button [routerLink]="['/basket', userId]">BASKET</button>
+
+
+      <span class="spacer"></span>
+
+      <div>
+        <input type="text" [(ngModel)]="searchTerm" placeholder="Search" class="search-input"
+               (input)="filterProducts()" [ngClass]="{'search-input-focused': isSearchInputFocused}"
+               (focus)="toggleSearchInputFocus(true)" (blur)="toggleSearchInputFocus(false)">
+        <div class="search-results" *ngIf="isSearchInputFocused || searchTerm">
+          <ul>
+            <li *ngFor="let product of filteredProducts" (click)="search(userId, product.id)">
+              <span>{{ product.name }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+      <span class="spacer"></span>
+
+      <div class="user-dropdown" (click)="toggleDropdown()">
+        UserName: {{ username }}
+        <div class="dropdown-content" [class.show]="isDropdownOpen">
+          <a [routerLink]="['/account', userId]" translate>{{ 'Account' | translate }}</a>
+          <a routerLink="/" (click)="logout()" translate>{{ 'navbar.logout' | translate }}</a>
+        </div>
+      </div>
+
+      <span class="spacer"></span>
+
+      <div class="panel-icon">
+        <i class="material-icons">add_shopping_cart</i>
+
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
+
+
+<div class="backcolor" *ngIf="toggleProductOptions">
+  <button mat-button [routerLink]="['/product-man', userId]">Man</button>
+  <button mat-button [routerLink]="['/product-women', userId]">Women</button>
+</div>
+
+
+<div class="header">
+  <h1 class="logo">E-Commerce Store</h1>
+
+</div>
+
+<div style="display: flex">
+  <div class="main">
+    <div class="featured-products">
+      <h2>Featured Products</h2>
+      <div class="product-card-container">
+        <div class="product-card" *ngFor="let product of featuredProducts">
+          <h3>{{ product.name }}</h3>
+          <p class="price">{{ product["price"] }}</p>
+        </div>
+      </div>
+    </div>
+
+
+    <section class="product-recommendations featured-products">
+      <div class="men-products">
+        <h2>Men's Product Recommendations</h2>
+        <div class="product-card-container">
+          <div class="product-card" *ngFor="let products of manRandomProducts">
+            <a [routerLink]="['/product-details', userId, products.id]"><h3> {{ products.name }}</h3></a>
+            <p class="price">{{ products["price"] }} $</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="product-recommendations featured-products">
+      <div class="women-products">
+        <h2>Women's Product Recommendations</h2>
+        <div class="product-card-container">
+          <div class="product-card" *ngFor="let product of womenRandomProducts">
+            <a [routerLink]="['/product-details', userId, product.id]"><h3>{{ product.name }}</h3></a>
+            <p class="price">{{ product.price }} $</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="sub-main">
+
+
+    <div class="panel-content">
+      <!-- Panel content goes here -->
+      <div *ngFor="let addedProduct of cartService.getAddedProducts(); let i = index">
+        <a [routerLink]="['/product-details', userId,addedProduct.product.id]">
+          <p class="product-info">{{ addedProduct.product.name }} </p>
+        </a>
+        <p class="product-info">{{ addedProduct.product.price }}, ({{ addedProduct.quantity }}) </p>
+        <div>
+          <label for="quantity{{ i }}">Quantity:</label>
+          <input type="number" id="quantity{{ i }}" [(ngModel)]="addedProduct.quantity"
+                 (ngModelChange)="updateQuantity(addedProduct.id, addedProduct.quantity)"
+                 (input)="validateQuantity()" min="1" required/>
+        </div>
+        <p>Total Price: {{ addedProduct.product.price * addedProduct.quantity }}$</p>
+        <button (click)="removeProduct(addedProduct.id)">Cancel</button>
+      </div>
+      <p class="total-price">Final Price: {{ calculateTotalPrice() }}$</p>
+
+    </div>
+
+  </div>
+</div>
+<section class="product-recommendations">
+  <div class="women-products">
+    <h2>Women's Product Recommendations</h2>
+    <!--    <app-product-women></app-product-women>-->
+  </div>
+</section>
+
+
+<div style="display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;">
+  <div class="advertising-column">
+    <section>
+      <div>
+        <a [routerLink]="['/product-women', userId]">
+          <div>
+            <picture>
+              <source
+                srcset="https://content.asos-media.com/-/media/homepages/ww/2023/may/22-prime/hero/ww-hp---mob_dt_hero_640x692.jpg"
+                media="(max-width: 768px)" width="640" height="692">
+              <img style="
+    height: fit-content;
+    width:99%;"
+                   src="https://content.asos-media.com/-/media/homepages/ww/2023/may/22-prime/hero/ww-hero-desktop_1258x600-coloured-frames.jpg"
+                   alt="" width="1258" height="600">
+            </picture>
+          </div>
+
+        </a></div>
+
+    </section>
+  </div>
+  <div class="advertising-column">
+    <section>
+      <div>
+        <a [routerLink]="['/product-man', userId]">
+
+          <picture>
+            <source
+              srcset="https://content.asos-media.com/-/media/homepages/mw/2023/may/22-prime/us/mob_mw_hp_pp_us_640x692.jpg"
+              media="(max-width: 768px)" width="640" height="692">
+            <img style="
+    height: fit-content;
+    width:99%;"
+                 src="https://content.asos-media.com/-/media/homepages/mw/2023/may/22-prime/us/dt_mw_hp_pp_us_1258x600.jpg"
+                 alt="Peacock shirt, $40" width="1258" height="600">
+          </picture>
+        </a>
+      </div>
+    </section>
+  </div>
+</div>
+
+
+<footer class="footer" style="display: flex;
+    text-align: center;justify-content: space-between;">
+  <section>
+    <h3>Help and Information</h3>
+    <ul>
+      <li><a href="https://www.asos.com/us/customer-care/">Help</a></li>
+      <li><a
+        href="https://my.asos.com/my-account/orders?country=US&amp;keyStoreDataversion=ornjx7v-36&amp;lang=en-US&amp;store=US">Track
+        order</a></li>
+      <li><a href="https://www.asos.com/us/payments-and-shipping/delivery/">Delivery
+        &amp; returns</a></li>
+      <li><a href="https://www.asos.com/us/customer-service/premier-delivery/">ASOS
+        Premier</a></li>
+      <li><a c
+             href="https://www.asos.com/us/discover/students/asos-on-campus/student-validation">10% Student Discount</a>
+      </li>
+      <li><a href="https://www.asos.com/us/sitemap/">Sitemap</a></li>
+    </ul>
+  </section>
+  <section><h3>About ASOS</h3>
+    <ul>
+      <li><a href="https://www.asos.com/us/about/">About us</a></li>
+      <li><a href="https://asoscareers.asos.com/" target="_blank">Careers at ASOS</a>
+      </li>
+      <li><a href="https://www.asosplc.com/fashion-with-integrity/" target="_blank">Corporate
+        responsibility</a></li>
+      <li><a href="https://www.asosplc.com/" target="_blank">Investors' site</a></li>
+    </ul>
+  </section>
+  <section><h3>More From ASOS</h3>
+    <ul>
+      <li><a href="https://www.asos.com/us/discover/our-apps/">Mobile and ASOS
+        apps</a></li>
+      <li><a href="https://marketplace.asos.com/?ctaref=Global+footer"
+             target="_blank">ASOS Marketplace</a></li>
+      <li><a
+        href="https://www.asos.com/us/gift-vouchers/?ctaref=global%20footer|gift%20vouchers">E-gift cards</a></li>
+      <li><a
+        href="https://www.asos.com/us/discover/black-friday-cyber-monday-deals/">Black Friday</a></li>
+      <li><a
+        href="https://www.asos.com/us/discover/refer-a-friend/?situation=web_footer">Refer A Friend</a></li>
+    </ul>
+  </section>
+  <div>
+  </div>
+</footer>
+
+</body>

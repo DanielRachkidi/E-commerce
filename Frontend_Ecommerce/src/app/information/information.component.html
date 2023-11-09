@@ -1,0 +1,32 @@
+<body>
+<div class="container">
+<div class="card">
+  <h2>User Information</h2>
+  <div>
+
+  </div>
+  <form (ngSubmit)="createUserInfo()" style="
+  margin-left: 114px;
+    width: 134%;">
+    <div>
+      <label for="address">Address:</label>
+      <input type="text" id="address" [(ngModel)]="userInfo.address" name="address" required>
+    </div>
+    <div>
+      <label for="city">City:</label>
+      <input type="text" id="city" [(ngModel)]="userInfo.city" name="city" required>
+    </div>
+    <div>
+      <label for="code_postal">Postal Code:</label>
+      <input type="number" id="code_postal" [(ngModel)]="userInfo.code_postal" name="code_postal" required>
+    </div>
+    <div>
+      <label for="country">Country:</label>
+      <input type="text" id="country" [(ngModel)]="userInfo.country" name="country" required>
+    </div>
+    <br>
+    <button type="submit">Save</button>
+  </form>
+</div>
+</div>
+</body>

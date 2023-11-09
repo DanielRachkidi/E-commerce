@@ -1,0 +1,12 @@
+{
+  "navbar": {
+    "addProducts": "Ajouter des produits",
+    "productList": "Liste des produits",
+    "logout": "Déconnexion"
+  },
+  "home": {
+    "welcome": "Bienvenue sur notre site web !",
+    "text": "Lorem ",
+    "getStarted": "Commencer"
+  }
+}

@@ -1,6 +1,7 @@
 package com.commerce.datamodel;
 
 
+import com.amazonaws.thirdparty.jackson.annotation.JsonIgnore;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
@@ -35,8 +36,8 @@ public class UserPayment
   @Column(name = "provider")
   private String provider;
   
-  @Column(name = "amount")
-  private int amount;
+  @Column(name = "accountno")
+  private int accountno;
   
   @Column(name = "expiry")
   private Date expiry;

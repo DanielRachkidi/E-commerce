@@ -1,4 +1,4 @@
-package com.commerce.user;
+package com.commerce.user.service;
 
 import com.commerce.datamodel.User;
 import com.commerce.user.repository.UserRepository;

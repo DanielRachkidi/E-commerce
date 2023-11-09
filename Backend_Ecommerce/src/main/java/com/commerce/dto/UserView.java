@@ -13,6 +13,8 @@ public class UserView
   
   private String password;
   
+  
+  
   public UserView(User user)
   {
     this.id = user.getId();

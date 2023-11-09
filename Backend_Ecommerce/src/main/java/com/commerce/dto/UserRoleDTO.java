@@ -1,2 +1,19 @@
-package com.commerce.dto;public class UserRoleDTO {
+package com.commerce.dto;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class UserRoleDTO {
+  private int userId;
+  private int roleId;
+  
+  public UserRoleDTO() {
+  }
+  
+  public UserRoleDTO(int userId, int roleId) {
+    this.userId = userId;
+    this.roleId = roleId;
+  }
 }

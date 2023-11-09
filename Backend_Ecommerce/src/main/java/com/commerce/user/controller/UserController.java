@@ -1,4 +1,4 @@
-package com.commerce.user;
+package com.commerce.user.controller;
 
 import com.amazonaws.services.accessanalyzer.model.ResourceNotFoundException;
 import com.amazonaws.services.connect.model.UserNotFoundException;
@@ -8,6 +8,7 @@ import com.commerce.datamodel.UserInfo;
 import com.commerce.datamodel.UserPayment;
 import com.commerce.dto.UserPrincipal;
 import com.commerce.dto.UserView;
+import com.commerce.user.service.UserService;
 import com.commerce.user.repository.RoleRepository;
 import com.commerce.user.repository.UserInfoRepository;
 import com.commerce.user.repository.UserPaymentRepository;

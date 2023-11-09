@@ -1,18 +1,20 @@
-package com.commerce.dto;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.security.core.GrantedAuthority;
-
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class Role implements GrantedAuthority
-{
-  
-  public static final String USER_ADMIN = "USER_ADMIN";
-  public static final String USER = "USER";
-  
-  private String authority;
-}
+//package com.commerce.dto;
+//
+//import org.springframework.security.core.GrantedAuthority;
+//
+//public record Role(String authority)
+//  implements GrantedAuthority
+//{
+//  public static final String ADMIN_AUTH = "ADMIN";
+//  public static final String USER_AUTH = "USER";
+//
+//  public static final Role ADMIN = new Role(ADMIN_AUTH);
+//
+//  public static final Role USER = new Role(USER_AUTH);
+//
+//  @Override
+//  public String getAuthority()
+//  {
+//    return authority;
+//  }
+//}

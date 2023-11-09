@@ -1,10 +1,12 @@
-package com.commerce.user;
+package com.commerce.user.controller;
 
 import com.commerce.datamodel.Role;
 import com.commerce.datamodel.User;
 import com.commerce.dto.UserRoleDTO;
+import com.commerce.user.service.UserRoleService;
 import com.commerce.user.repository.RoleRepository;
 import com.commerce.user.repository.UserRepository;
+import com.commerce.user.repository.UserRoleRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

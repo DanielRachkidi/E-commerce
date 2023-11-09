@@ -1,4 +1,4 @@
-package com.commerce.user;
+package com.commerce.user.repository;
 
 import com.commerce.datamodel.Role;
 import org.springframework.data.jpa.repository.JpaRepository;

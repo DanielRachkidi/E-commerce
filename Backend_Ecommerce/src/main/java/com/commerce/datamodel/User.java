@@ -1,19 +1,24 @@
 package com.commerce.datamodel;
-
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.PersistenceException;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import lombok.Getter;
@@ -34,6 +39,7 @@ public class User
   
   @Column(name = "username")
   @Size(min = 3, message = "username should have min 3 characters")
+  @NotBlank(message = "Name is required")
   private String username;
   
   @Column(name = "password")
@@ -54,6 +60,16 @@ public class User
   @Column(name = "telephone")
   private int telephone;
   
+  
+  @JsonIgnoreProperties("users")
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(
+    name = "userrole",
+    joinColumns = @JoinColumn(name = "id_user"),
+    inverseJoinColumns = @JoinColumn(name = "id_role")
+  )
+  private Set<Role> roles = new HashSet<>();
+
   public int getId()
   {
     return id;
@@ -69,50 +85,12 @@ public class User
     return username;
   }
   
-  public void setUsername(String username)
-  {
-    this.username = username;
-  }
   
   public String getPassword()
   {
     return password;
   }
   
-  public void setPassword(String password)
-  {
-    this.password = password;
-  }
-  
-  public String getFirst_name()
-  {
-    return first_name;
-  }
-  
-  public void setFirst_name(String first_name)
-  {
-    this.first_name = first_name;
-  }
-  
-  public String getLast_name()
-  {
-    return last_name;
-  }
-  
-  public void setLast_name(String last_name)
-  {
-    this.last_name = last_name;
-  }
-  
-  public int getTelephone()
-  {
-    return telephone;
-  }
-  
-  public void setTelephone(int telephone)
-  {
-    this.telephone = telephone;
-  }
   
   @PrePersist
   @PreUpdate

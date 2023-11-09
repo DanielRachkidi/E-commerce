@@ -1,8 +1,10 @@
-package com.commerce.user;
+package com.commerce.user.controller;
 
 import com.commerce.datamodel.Role;
 import com.commerce.datamodel.User;
 import com.commerce.dto.UserView;
+import com.commerce.user.service.AdminService;
+import com.commerce.user.service.UserService;
 import com.commerce.user.repository.RoleRepository;
 import java.util.HashMap;
 import java.util.List;

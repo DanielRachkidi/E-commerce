@@ -1,7 +1,6 @@
-package Exceptions;
+package com.commerce.exceptions;
 
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.dao.DuplicateKeyException;
 
 public class DuplicateException
   extends DataIntegrityViolationException

@@ -1,0 +1,184 @@
+<body><div>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row class="navbar" style="background-color: lightgreen">
+      <button mat-button [routerLink]="['/home', userId]" translate>{{ 'Home' | translate }}</button>
+
+      <button *ngIf="hasAdminRole" mat-button [routerLink]="['/addproduct', userId]">Add Product</button>
+
+      <button mat-button (click)="toggleProductOptions = !toggleProductOptions" translate>
+        {{ 'navbar.productList' | translate }}</button>
+
+      <button mat-button [routerLink]="['/basket', userId]">BASKET</button>
+
+
+      <span class="spacer"></span>
+
+      <div>
+        <input type="text" [(ngModel)]="searchTerm" placeholder="Search" class="search-input"
+               (input)="filterProducts()" [ngClass]="{'search-input-focused': isSearchInputFocused}"
+               (focus)="toggleSearchInputFocus(true)" (blur)="toggleSearchInputFocus(false)">
+        <div class="search-results" *ngIf="isSearchInputFocused || searchTerm">
+          <ul>
+
+            <li *ngFor="let product of filteredProducts" (click)="search(userId, product.id)">
+              <span>{{ product.name }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <span class="spacer"></span>
+
+      <div class="user-dropdown" (click)="toggleDropdown()">
+        UserName: {{username}}
+        <div class="dropdown-content" [class.show]="isDropdownOpen">
+          <a [routerLink]="['/account', userId]" translate>{{ 'Account' | translate }}</a>
+          <a routerLink="/" (click)="logout()" translate>{{ 'navbar.logout' | translate }}</a>
+        </div>
+      </div>
+
+      <span class="spacer"></span>
+
+
+      <div class="panel-icon" (click)="togglePanel()">
+        <i class="material-icons">add_shopping_cart</i>
+
+      </div>
+
+      <div class="panel" [class.open]="showPanel">
+        <div class="panel-content">
+          <!-- Panel content goes here -->
+          <h3>Products Added to Bag</h3>
+          <div *ngFor="let addedProduct of cartService.getAddedProducts(); let i = index">
+            <a [routerLink]="['/product-details', userId,addedProduct.product.id]">
+              <p class="product-info">{{ addedProduct.product.name }} </p>
+            </a>
+            <p class="product-info">{{ addedProduct.product.price }}, ({{ addedProduct.quantity }}) </p>
+            <div>
+              <label for="quantity{{ i }}">Quantity:</label>
+              <input type="number" id="quantity{{ i }}" [(ngModel)]="addedProduct.quantity"
+                     (ngModelChange)="updateQuantity(addedProduct.id, addedProduct.quantity)"
+                     (input)="validateQuantity()" min="1" required />
+            </div>
+            <p>Total Price: {{ addedProduct.product.price * addedProduct.quantity }}$</p>
+            <button (click)="removeProduct(addedProduct.id)">Cancel</button>
+          </div>
+          <p class="total-price">Final Price: {{ calculateTotalPrice() }}$</p>
+
+        </div>
+      </div>
+
+
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
+
+<div class="backcolor" *ngIf="toggleProductOptions">
+  <button mat-button [routerLink]="['/product-women', userId]">Women</button>
+</div>
+
+
+
+<!--<div> userId : {{userId}} </div>-->
+
+<div style="display: flex">
+  <div style="width: 75%">
+    <mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+        <mat-cell *matCellDef="let product">
+          <a [routerLink]="['/product-details', userId, product.id]">{{ product.name }} </a>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Price</mat-header-cell>
+        <mat-cell *matCellDef="let product">{{ product.price }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="gender">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Gender</mat-header-cell>
+        <mat-cell *matCellDef="let product">{{ product.gender }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+
+  <div class="sub-main" style="text-align: center">
+
+
+    <!--        <h3>Products Added to Bag</h3>-->
+    <div *ngFor="let addedProduct of cartService.getAddedProducts(); let i = index">
+      <a [routerLink]="['/product-details', userId,addedProduct.product.id]">
+        <p class="product-info">{{ addedProduct.product.name }} </p>
+      </a>
+      <p class="product-info">{{ addedProduct.product.price }}, ({{ addedProduct.quantity }}) </p>
+      <div>
+        <label for="quantity{{ i }}">Quantity:</label>
+        <input type="number" id="quantity{{ i }}" [(ngModel)]="addedProduct.quantity"
+               (ngModelChange)="updateQuantity(addedProduct.id, addedProduct.quantity)"/>
+      </div>
+      <p>Total Price: {{ addedProduct.product.price * addedProduct.quantity }}$</p>
+      <button (click)="removeProduct(addedProduct.id)">Cancel</button>
+    </div>
+    <p class="total-price">Final Price: {{ calculateTotalPrice() }}$</p>
+
+  </div>
+
+</div>
+
+
+<br>
+<br>
+<br>
+<br>
+
+<footer class="footer" style="display: flex;
+    text-align: center;justify-content: space-between;">
+  <section >
+    <h3>Help and Information</h3>
+    <ul >
+      <li><a href="https://www.asos.com/us/customer-care/"  >Help</a></li>
+      <li><a
+        href="https://my.asos.com/my-account/orders?country=US&amp;keyStoreDataversion=ornjx7v-36&amp;lang=en-US&amp;store=US">Track
+        order</a></li>
+      <li><a href="https://www.asos.com/us/payments-and-shipping/delivery/">Delivery
+        &amp; returns</a></li>
+      <li><a href="https://www.asos.com/us/customer-service/premier-delivery/">ASOS
+        Premier</a></li>
+      <li><a c
+             href="https://www.asos.com/us/discover/students/asos-on-campus/student-validation">10% Student Discount</a>
+      </li>
+      <li><a href="https://www.asos.com/us/sitemap/">Sitemap</a></li>
+    </ul>
+  </section>
+  <section><h3>About ASOS</h3>
+    <ul>
+      <li><a href="https://www.asos.com/us/about/">About us</a></li>
+      <li><a href="https://asoscareers.asos.com/" target="_blank">Careers at ASOS</a>
+      </li>
+      <li><a href="https://www.asosplc.com/fashion-with-integrity/" target="_blank">Corporate
+        responsibility</a></li>
+      <li><a href="https://www.asosplc.com/" target="_blank">Investors' site</a></li>
+    </ul>
+  </section>
+  <section><h3>More From ASOS</h3>
+    <ul>
+      <li><a href="https://www.asos.com/us/discover/our-apps/">Mobile and ASOS
+        apps</a></li>
+      <li><a href="https://marketplace.asos.com/?ctaref=Global+footer"
+             target="_blank">ASOS Marketplace</a></li>
+      <li><a
+        href="https://www.asos.com/us/gift-vouchers/?ctaref=global%20footer|gift%20vouchers">E-gift cards</a></li>
+      <li><a
+        href="https://www.asos.com/us/discover/black-friday-cyber-monday-deals/">Black Friday</a></li>
+      <li><a
+        href="https://www.asos.com/us/discover/refer-a-friend/?situation=web_footer">Refer A Friend</a></li>
+    </ul>
+  </section>
+  <div>
+  </div>
+</footer>
+</body>
