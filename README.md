@@ -6,7 +6,7 @@ This is an E-commerce project created from scratch, focusing on various aspects 
 
 - [Features](#features)
 - [Technology Stack](#technology-stack)
-- [Admin Panel](#admin-panel)
+- [Admin Page](#admin-page)
 
 ## Features
 
@@ -16,7 +16,7 @@ The project includes the following features:
 - **Product Listing**: Products can be added, viewed, and managed by Admin.
 - **Product Detail**: Users see product detail.
 - **Search and Filtering**: Users can search for products and apply filters.
-- **Admin Panel**: An admin, with the "admin" role, can add, update, and delete products.
+- **Admin Page**: An admin, with the "admin" role, can add, update, and delete products.
 - **Cart Customization**: Enhance the user shopping experience by adding, updating quantities, and canceling items in  shopping cart.
 
 
@@ -31,7 +31,7 @@ The project includes the following features:
 
 - **Other Technologies**: Your project may also utilize other technologies, libraries, or tools that should be mentioned here.
 
-## Admin Panel
+## Admin Page
 (it specifies that the "admin" role is required to access the admin panel features)
 The admin panel allows administrators (with the "admin" role) to perform the following actions:
 
