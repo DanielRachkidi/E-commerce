@@ -84,13 +84,3 @@ u
 Esrc/main/java/com/commerce/security/CustomAuthenticationProvider.java,c\e\cea96f93afb4f76dc612225fc82853b09dfe3721
 j
 :src/main/java/com/commerce/security/WebSecurityConfig.java,2\5\2523ac6ef8dee2809f895e08f029ae9c9b06a86e
-W
-'src/main/java/com/commerce/TestApp.java,6\f\6f1ef3fdd63bfc3d15b2364a7b837852b039acf5
-n
->src/main/java/com/commerce/user/controller/UserController.java,3\6\36632aa67cf0296bf629948323a0333ae40c8da1
-h
-8src/main/java/com/commerce/user/service/UserService.java,2\0\20413c45e1a5e8f0464e1ac772def1e5cff65a79
-i
-9src/main/java/com/commerce/user/service/AdminService.java,8\f\8f7cc6570bec6e408e39246c81485dfa18e178b9
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec

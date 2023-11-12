@@ -1,9 +1,0 @@
-
-`	java:S112>"FDefine and throw a dedicated exception instead of using a generic one.(Ü¹¤ùÿÿÿÿ
-a	java:S112„"FDefine and throw a dedicated exception instead of using a generic one.(“«ğÓúÿÿÿÿ
-\	java:S112²"FDefine and throw a dedicated exception instead of using a generic one.(ûªÙ×
-z
-java:S1488æ"cImmediately return this expression instead of assigning it to the temporary variable "updatedUser".(ÓÇí
-\
-java:S1126g"AReplace this if-then-else statement by a single return statement.(®‹Åíıÿÿÿÿ
-c	java:S100p"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÓÖ€Ş
