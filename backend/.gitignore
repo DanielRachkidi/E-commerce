@@ -83,3 +83,8 @@ nb-configuration.xml
 ## OS X
 ##############################
 .DS_Store
+
+
+application.properties
+conf.properties
+rsa.private.key
