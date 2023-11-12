@@ -12,8 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserRoleService {
-
+public class UserRoleService
+{
+  
   private static final Logger logger = LoggerFactory.getLogger(UserRoleService.class);
   
   @Autowired
@@ -25,8 +26,13 @@ public class UserRoleService {
   @Autowired
   private RoleService roleService;
   
-  public UserRole createUserRole(UserRoleDTO userRoleDTO) {
-    logger.info("Creating a new UserRole with userId: {} and roleId: {}", userRoleDTO.getUserId(), userRoleDTO.getRoleId());
+  public UserRole createUserRole(UserRoleDTO userRoleDTO)
+  {
+    logger.info(
+      "Creating a new UserRole with userId: {} and roleId: {}",
+      userRoleDTO.getUserId(),
+      userRoleDTO.getRoleId()
+    );
     
     UserRole userRole = new UserRole();
     userRole.setUserId(userRoleDTO.getUserId());
@@ -36,12 +42,14 @@ public class UserRoleService {
     
     UserRole createdUserRole = userRoleRepository.save(userRole);
     logger.info("UserRole created successfully. Role Id: {} and User Id: {}",
-      createdUserRole.getRoleId() , createdUserRole.getUserId());
+      createdUserRole.getRoleId(), createdUserRole.getUserId()
+    );
     
     return createdUserRole;
   }
   
-  public List<UserRole> getAllUserRoles() {
+  public List<UserRole> getAllUserRoles()
+  {
     logger.info("Fetching all UserRoles");
     
     List<UserRole> userRoles = userRoleRepository.findAll();
@@ -51,11 +59,13 @@ public class UserRoleService {
     return userRoles;
   }
   
-  public void deleteUserRole(int userId, int roleId) {
+  public void deleteUserRole(int userId, int roleId)
+  {
     logger.info("Deleting UserRole with userId: {} and roleId: {}", userId, roleId);
     
     Optional<UserRole> optionalUserRole = userRoleRepository.findByUserIdAndRoleId(userId, roleId);
-    if (optionalUserRole.isEmpty()) {
+    if (optionalUserRole.isEmpty())
+    {
       throw new NotFoundException("UserRole not found");
     }
     UserRole userRole = optionalUserRole.get();

@@ -2,28 +2,33 @@ package com.commerce.user.controller;
 
 import com.commerce.datamodel.Role;
 import com.commerce.datamodel.User;
+import com.commerce.datamodel.UserRole;
 import com.commerce.dto.UserRoleDTO;
-import com.commerce.user.service.UserRoleService;
 import com.commerce.user.repository.RoleRepository;
 import com.commerce.user.repository.UserRepository;
 import com.commerce.user.repository.UserRoleRepository;
+import com.commerce.user.service.UserRoleService;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import com.commerce.datamodel.UserRole;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/user-roles")
-public class UserRoleController {
+public class UserRoleController
+{
   
   private static final Logger logger = LoggerFactory.getLogger(UserRoleController.class);
   
@@ -39,8 +44,10 @@ public class UserRoleController {
   @Autowired
   private RoleRepository roleRepository;
   
+  // creates a new user role and returns the corresponding DTO.
   @PostMapping
-  public ResponseEntity<UserRoleDTO> createUserRole(@RequestBody UserRoleDTO userRoleDTO) {
+  public ResponseEntity<UserRoleDTO> createUserRole(@RequestBody UserRoleDTO userRoleDTO)
+  {
     logger.info("Creating a new UserRole: {}", userRoleDTO);
     
     UserRole createdUserRole = userRoleService.createUserRole(userRoleDTO);
@@ -51,16 +58,19 @@ public class UserRoleController {
     return new ResponseEntity<>(createdUserRoleDTO, HttpStatus.CREATED);
   }
   
+  // fetches a user role by userId and roleId, returning user and role information.
   @GetMapping("/{userId}/{roleId}")
   public ResponseEntity<Map<String, String>> getUserRoleById(
     @PathVariable("userId") int userId,
     @PathVariable("roleId") int roleId
-  ) {
+  )
+  {
     logger.info("Fetching UserRole with userId: {} and roleId: {}", userId, roleId);
     
     Optional<UserRole> optionalUserRole = userRoleRepository.findByUserIdAndRoleId(userId, roleId);
     
-    if (optionalUserRole.isEmpty()) {
+    if (optionalUserRole.isEmpty())
+    {
       logger.warn("UserRole not found");
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
@@ -69,7 +79,8 @@ public class UserRoleController {
     
     // Fetch the User information separately
     Optional<User> optionalUser = userRepository.findById(userRole.getUserId());
-    if (optionalUser.isEmpty()) {
+    if (optionalUser.isEmpty())
+    {
       logger.warn("User not found for UserRole with userId: {}", userRole.getUserId());
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
@@ -78,7 +89,8 @@ public class UserRoleController {
     
     // Fetch the Role information separately
     Optional<Role> optionalRole = roleRepository.findById(userRole.getRoleId());
-    if (optionalRole.isEmpty()) {
+    if (optionalRole.isEmpty())
+    {
       logger.warn("Role not found for UserRole with roleId: {}", userRole.getRoleId());
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
@@ -94,8 +106,10 @@ public class UserRoleController {
     return new ResponseEntity<>(responseBody, HttpStatus.OK);
   }
   
+  // retrieves all user roles in the system.
   @GetMapping
-  public ResponseEntity<List<UserRole>> getAllUserRoles() {
+  public ResponseEntity<List<UserRole>> getAllUserRoles()
+  {
     logger.info("Fetching all UserRoles");
     
     List<UserRole> userRoles = userRoleService.getAllUserRoles();
@@ -105,16 +119,21 @@ public class UserRoleController {
     return new ResponseEntity<>(userRoles, HttpStatus.OK);
   }
   
+  // deletes a user role by userId and roleId, handling errors gracefully.
   @DeleteMapping("/{userId}/{roleId}")
-  public ResponseEntity<Void> deleteUserRole(@PathVariable("userId") int userId, @PathVariable("roleId") int roleId) {
+  public ResponseEntity<Void> deleteUserRole(@PathVariable("userId") int userId, @PathVariable("roleId") int roleId)
+  {
     logger.info("Deleting UserRole with userId: {} and roleId: {}", userId, roleId);
     
-    try {
+    try
+    {
       userRoleService.deleteUserRole(userId, roleId);
       
       logger.info("UserRole deleted successfully");
       return new ResponseEntity<>(HttpStatus.OK);
-    } catch (Exception e) {
+    }
+    catch (Exception e)
+    {
       logger.error("Error occurred while deleting UserRole", e);
       return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }

@@ -146,10 +146,9 @@ public class UserService
     
     userInfo.setUser(user);
     
-    if (userInfo.getAddress() == null || userInfo.getAddress().isEmpty() ||
-        userInfo.getCity() == null || userInfo.getCity().isEmpty() ||
-        userInfo.getCode_postal() <= 0 ||
-        userInfo.getCountry() == null || userInfo.getCountry().isEmpty())
+    if (userInfo.getAddress() == null || userInfo.getAddress().isEmpty() || userInfo.getCity() == null ||
+        userInfo.getCity().isEmpty() || userInfo.getCode_postal() <= 0 || userInfo.getCountry() == null ||
+        userInfo.getCountry().isEmpty())
     {
       throw new IllegalArgumentException(" Information cannot be null");
     }
@@ -194,10 +193,9 @@ public class UserService
     userInfo.setCode_postal(userInfoDetails.getCode_postal());
     userInfo.setCountry(userInfoDetails.getCountry());
     
-    if (userInfo.getAddress() == null || userInfo.getAddress().isEmpty() ||
-        userInfo.getCity() == null || userInfo.getCity().isEmpty() ||
-        userInfo.getCode_postal() == 0 ||
-        userInfo.getCountry() == null || userInfo.getCountry().isEmpty())
+    if (userInfo.getAddress() == null || userInfo.getAddress().isEmpty() || userInfo.getCity() == null ||
+        userInfo.getCity().isEmpty() || userInfo.getCode_postal() == 0 || userInfo.getCountry() == null ||
+        userInfo.getCountry().isEmpty())
     {
       throw new IllegalArgumentException(" Information cannot be updated");
     }
@@ -211,7 +209,8 @@ public class UserService
     // Perform necessary validations or business logic before updating the user
     
     // Check if the user exists
-    User existingUser = repository.findById(userId)
+    User existingUser = repository
+      .findById(userId)
       .orElseThrow(() -> new UserNotFoundException("User not found with ID: " + userId));
     
     // Update the user entity

@@ -38,9 +38,8 @@ public class CustomAuthenticationProvider
     {
       User user = userList.get(0);
       UserPrincipal principal = new UserPrincipal(user);
-//      return new UsernamePasswordAuthenticationToken(principal, hashed, List.of(Role.USER));
+      //return new UsernamePasswordAuthenticationToken(principal, hashed, List.of(Role.USER));
       return new UsernamePasswordAuthenticationToken(principal, hashed, List.of());
-  
     }
     else
     {

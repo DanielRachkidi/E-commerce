@@ -6,23 +6,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RoleService {
+public class RoleService
+{
   
   @Autowired
   private RoleRepository roleRepository;
   
-  public Role getRoleById(int roleId) {
+  public Role getRoleById(int roleId)
+  {
     return roleRepository.findById(roleId).orElse(null);
   }
   
-  public Role getUserRole() {
+  public Role getUserRole()
+  {
     return roleRepository.findByRoleName("user");
   }
   
-  public Role getAdminRole() {
+  public Role getAdminRole()
+  {
     return roleRepository.findByRoleName("admin");
   }
-  
-  
 }
 

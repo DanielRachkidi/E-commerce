@@ -38,28 +38,28 @@ public class AuthApi
   public ResponseEntity<UserPrincipal> login(@RequestBody @Valid AuthRequest request, HttpServletRequest httpRequest)
   {
     logger.info("Logging in user {}", request.getUsername());
-  
+    
     try
     {
       Authentication authentication = provider
         .authenticate(
           new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword())
         );
-  
+      
       if (authentication == null)
       {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
       }
-  
+      
       String scope = authentication.getAuthorities().stream()
         .map(GrantedAuthority::getAuthority)
         .collect(Collectors.joining(" "));
-  
+      
       UserPrincipal user = (UserPrincipal) authentication.getPrincipal();
-  
+      
       Instant now = Instant.now();
       long expiry = 36000L;
-  
+      
       JwtClaimsSet claims = JwtClaimsSet.builder()
         .issuer("com.commerce")
         .issuedAt(now)
@@ -67,11 +67,11 @@ public class AuthApi
         .subject(user.subject())
         .claim("roles", scope) // Check for null and return empty string
         .build();
-  
+      
       String token = this.jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
-  
+      
       return ResponseEntity.ok()
-        .header(HttpHeaders.AUTHORIZATION,  token)
+        .header(HttpHeaders.AUTHORIZATION, token)
         .body(user);
     }
     catch (BadCredentialsException ex)

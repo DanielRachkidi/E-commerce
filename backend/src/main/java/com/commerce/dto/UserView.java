@@ -13,14 +13,10 @@ public class UserView
   
   private String password;
   
-  
-  
   public UserView(User user)
   {
     this.id = user.getId();
     this.username = user.getUsername();
     this.password = user.getPassword();
   }
-  
-  
 }

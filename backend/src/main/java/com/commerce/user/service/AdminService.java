@@ -15,7 +15,6 @@ public class AdminService
   @Autowired
   private UserRepository repository;
   
-  
   // create user Admin
   public User signUpAdmin(User user)
   {

@@ -8,7 +8,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer>
+public interface UserRepository
+  extends JpaRepository<User, Integer>
 {
   @Query(value = "select r from User r where r.username = :username and r.password = :password")
   List<User> findByCredentials(@Param("username") String username, @Param("password") String password);
@@ -18,6 +19,4 @@ public interface UserRepository extends JpaRepository<User, Integer>
     @Param("username") String username,
     @Param("password") String password
   );
-  
-  
 }

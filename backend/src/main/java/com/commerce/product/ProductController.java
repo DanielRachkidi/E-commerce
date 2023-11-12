@@ -1,9 +1,9 @@
 package com.commerce.product;
 
+import com.commerce.datamodel.Product;
 import com.commerce.exceptions.DuplicateException;
 import com.commerce.exceptions.IntegerException;
 import com.commerce.exceptions.ServiceException;
-import com.commerce.datamodel.Product;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,34 +38,41 @@ public class ProductController
   
   @Autowired
   private ProductService productService;
-
-  // insert and save producr
+  
+  // insert and save product
   
   @PostMapping(path = "/addproduct", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<?> addProduct(@RequestBody Product product) {
-    try {
+  public ResponseEntity<?> addProduct(@RequestBody Product product)
+  {
+    try
+    {
       logger.info("Adding product: {}", product);
       Product savedProduct = productService.insert(product);
       logger.info("Product added: {}", savedProduct);
       return new ResponseEntity<>(savedProduct, HttpStatus.CREATED);
-    }  catch (DuplicateException e) {
+    }
+    catch (DuplicateException e)
+    {
       String errorMessage = e.getMessage();
       Map<String, String> errorResponse = new HashMap<>();
       errorResponse.put("error", errorMessage);
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
-    } catch (IntegerException e) {
+    }
+    catch (IntegerException e)
+    {
       String errorMessage = e.getMessage();
       Map<String, String> errorResponse = new HashMap<>();
       errorResponse.put("error", errorMessage);
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
-    } catch (ServiceException e) {
+    }
+    catch (ServiceException e)
+    {
       String errorMessage = e.getMessage();
       Map<String, String> errorResponse = new HashMap<>();
       errorResponse.put("error", errorMessage);
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
     }
   }
-  
   
   // see all product
   @GetMapping(path = "/list")
@@ -78,10 +85,10 @@ public class ProductController
     return products;
   }
   
-
-  // the all product by Gender
+  // see the products by Gender
   @GetMapping("/lists/{gender}")
-  public ResponseEntity<List<Product>> getProductListByGender(@PathVariable String gender) {
+  public ResponseEntity<List<Product>> getProductListByGender(@PathVariable String gender)
+  {
     logger.info("Fetching products for gender: {}", gender);
     List<Product> products = productService.getProductsByGender(gender);
     logger.info("Found {} products for gender: {}", products.size(), gender);
@@ -91,56 +98,68 @@ public class ProductController
   // delete product by id
   @DeleteMapping("/delete/{id}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
-  public void  deleteProductById(@PathVariable int id)
+  public void deleteProductById(@PathVariable int id)
   {
     try
     {
       logger.info("Deleting product with ID: {}", id);
       productService.deleteProduct(id);
       logger.info("Deleting product with ID: {}", id);
-    } catch (Exception e){
+    }
+    catch (Exception e)
+    {
       logger.error("Error deleting product with ID: {}", id, e);
     }
   }
   
-
-  
   // update product by id
   @PutMapping("/products/{productId}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
-  public ResponseEntity<?> updateProduct(@PathVariable int productId, @RequestBody Product updatedProduct) {
-    try {
+  public ResponseEntity<?> updateProduct(@PathVariable int productId, @RequestBody Product updatedProduct)
+  {
+    try
+    {
       logger.info("Updating product with ID: {}, Updated product details: {}", productId, updatedProduct);
       Product savedProduct = productService.updateProduct(productId, updatedProduct);
       return new ResponseEntity<>(savedProduct, HttpStatus.OK);
-    } catch (IllegalArgumentException e) {
+    }
+    catch (IllegalArgumentException e)
+    {
       String errorMessage = e.getMessage();
       Map<String, String> errorResponse = new HashMap<>();
       errorResponse.put("error", errorMessage);
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
-    } catch (EntityNotFoundException e) {
+    }
+    catch (EntityNotFoundException e)
+    {
       String errorMessage = e.getMessage();
       Map<String, String> errorResponse = new HashMap<>();
       errorResponse.put("error", errorMessage);
       return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
-    } catch (Exception e) {
+    }
+    catch (Exception e)
+    {
       String errorMessage = e.getMessage();
       Map<String, String> errorResponse = new HashMap<>();
       errorResponse.put("error", errorMessage);
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
     }
   }
+  
   // see the product by id
   @GetMapping("/{productId}")
-  public ResponseEntity<Product> getProductById(@PathVariable int productId) {
-
+  public ResponseEntity<Product> getProductById(@PathVariable int productId)
+  {
+    
     Product product = productService.getProductById(productId);
     
-    if (product != null) {
+    if (product != null)
+    {
       return ResponseEntity.ok(product);
-    } else {
+    }
+    else
+    {
       return ResponseEntity.notFound().build();
     }
   }
-
 }

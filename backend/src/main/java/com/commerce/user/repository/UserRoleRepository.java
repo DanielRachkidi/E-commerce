@@ -18,5 +18,4 @@ public interface UserRoleRepository
   
   @Query("DELETE FROM UserRole ur WHERE ur.userId = :userId AND ur.roleId = :roleId")
   void deleteByIdUserIdAndIdRoleId(@Param("userId") int userId, @Param("roleId") int roleId);
-  
 }

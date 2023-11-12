@@ -18,9 +18,7 @@ public class UserPrincipal
     this.id = user.getId();
     this.username = user.getUsername();
     this.loginTime = Instant.now();
-  
   }
-  
   
   public String subject()
   {
@@ -32,6 +30,4 @@ public class UserPrincipal
     String[] split = subject.split(",");
     return new UserPrincipal((int) Long.parseLong(split[0]), split[1], Instant.parse(split[2]));
   }
-  
-  
 }

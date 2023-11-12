@@ -4,7 +4,6 @@ import com.commerce.datamodel.Product;
 import com.commerce.exceptions.DuplicateException;
 import com.commerce.exceptions.IntegerException;
 import com.commerce.exceptions.ServiceException;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -16,8 +15,6 @@ public class ProductService
   @Autowired
   ProductRepository productRepository;
   
-  
-
   // read list of the product
   public List<Product> getAllProducts()
   {
@@ -79,18 +76,15 @@ public class ProductService
       existingProduct.setQuantity(updatedProduct.getQuantity());
       existingProduct.setSize(updatedProduct.getSize());
       existingProduct.setGender(updatedProduct.getGender());
-  
+      
       return productRepository.save(existingProduct);
     }
     throw new ServiceException("Product not found with ID: " + productId);
   }
   
- 
   // specify the list of products by the  attribute gender
-public List<Product> getProductsByGender(String gender) {
-  return productRepository.findByGender(gender);
-}
-
-
-
+  public List<Product> getProductsByGender(String gender)
+  {
+    return productRepository.findByGender(gender);
+  }
 }

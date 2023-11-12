@@ -19,4 +19,5 @@ public interface UserInfoRepository
   
   // Search for UserInfo records associated with a specific User
   @Query("SELECT u FROM UserInfo u WHERE u.user = :user")
-  Optional<UserInfo> findByUser(@Param("user") User user);}
+  Optional<UserInfo> findByUser(@Param("user") User user);
+}

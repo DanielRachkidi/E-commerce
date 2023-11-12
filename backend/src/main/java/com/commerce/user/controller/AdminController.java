@@ -3,9 +3,9 @@ package com.commerce.user.controller;
 import com.commerce.datamodel.Role;
 import com.commerce.datamodel.User;
 import com.commerce.dto.UserView;
+import com.commerce.user.repository.RoleRepository;
 import com.commerce.user.service.AdminService;
 import com.commerce.user.service.UserService;
-import com.commerce.user.repository.RoleRepository;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,15 +28,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/admin")
 public class AdminController
 {
-  
   private static final Logger logger = LoggerFactory.getLogger(UserController.class);
-  
   @Autowired
   private AdminService adminService;
-  
   @Autowired
   private UserService userService;
-  
   @Autowired
   private RoleRepository roleRepository;
   

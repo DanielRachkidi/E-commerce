@@ -7,7 +7,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RoleRepository extends JpaRepository<Role, Integer>
+public interface RoleRepository
+  extends JpaRepository<Role, Integer>
 {
   @Query("SELECT r FROM Role r WHERE r.roleName = :roleName")
   Role findByRoleName(@Param("roleName") String roleName);
